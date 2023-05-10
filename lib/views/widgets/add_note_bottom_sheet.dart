@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:notes/constants.dart';
 import 'package:notes/views/widgets/custom_text_field.dart';
@@ -22,22 +21,25 @@ class AddNoteBottomSheet extends StatelessWidget {
             hint: "Content",
             maxLines: 6,
           ),
-          const SizedBox(height: 30),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 50),
-              backgroundColor: kPrimaryColor,
-            ),
-            onPressed: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                Text(
-                  "Add",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ],
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 40),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 50),
+                backgroundColor: kPrimaryColor,
+              ),
+              onPressed: () {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  Text(
+                    "Add",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ],
+              ),
             ),
           )
         ],
