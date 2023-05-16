@@ -7,19 +7,47 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return const Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
+      child: AddNoteForm(),
+    );
+  }
+}
+
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({
+    super.key,
+  });
+
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  String? title, subTitle;
+  final GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
       child: Column(
         children: [
           const SizedBox(height: 35),
-          const CustomTextField(
+          CustomTextField(
             hint: "Title",
             maxLines: 1,
+            onSaved: (value) {
+              title = value;
+            },
           ),
           const SizedBox(height: 20),
-          const CustomTextField(
+          CustomTextField(
             hint: "Content",
             maxLines: 6,
+            onSaved: (value) {
+              subTitle = value;
+            },
           ),
           const Spacer(),
           Padding(
@@ -29,11 +57,18 @@ class AddNoteBottomSheet extends StatelessWidget {
                 minimumSize: const Size(double.infinity, 50),
                 backgroundColor: kPrimaryColor,
               ),
-              onPressed: () {},
-              child: Row(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              },
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
                     "Add",
                     style: TextStyle(color: Colors.black),
