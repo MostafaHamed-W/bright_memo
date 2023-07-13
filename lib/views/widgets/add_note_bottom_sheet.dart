@@ -5,7 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'add_note_form.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
-  AddNoteBottomSheet({super.key});
+  const AddNoteBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,7 @@ class AddNoteBottomSheet extends StatelessWidget {
         },
         builder: (context, state) {
           return ModalProgressHUD(
-              inAsyncCall: state is AddNoteLoading ? true : false,
-              child: const AddNoteForm());
+              inAsyncCall: state is AddNoteLoading ? true : false, child: const AddNoteForm());
         },
       ),
     );
