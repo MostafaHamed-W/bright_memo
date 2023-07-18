@@ -1,28 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes/main.dart';
+import 'package:notes/models/note_model.dart';
 import '../../constants.dart';
+import 'package:intl/intl.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+  final NoteModel note;
+  const NoteItem({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
+    var noteDate = note.date;
+    DateTime date = DateTime.parse(noteDate);
+
     return Container(
       padding: const EdgeInsets.only(top: 24, bottom: 24, left: 24, right: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: kItemColor,
+        color: Color(note.color),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           ListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 15),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 15),
               child: Text(
-                "Flutter Tips",
-                style: TextStyle(
+                note.title,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 26,
                 ),
@@ -31,7 +38,7 @@ class NoteItem extends StatelessWidget {
             subtitle: Padding(
               padding: const EdgeInsets.only(right: 20, bottom: 16),
               child: Text(
-                "Build your container here in the subtitle",
+                note.subTitle,
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.4),
                   fontSize: 20,
@@ -39,7 +46,9 @@ class NoteItem extends StatelessWidget {
               ),
             ),
             trailing: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                debugPrint('${note.color}');
+              },
               icon: const Icon(
                 FontAwesomeIcons.trash,
                 color: Colors.black,
@@ -50,9 +59,8 @@ class NoteItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 13),
             child: Text(
-              "May21, 2022",
-              style:
-                  TextStyle(color: Colors.black.withOpacity(0.4), fontSize: 15),
+              DateFormat.yMMMEd().format(date),
+              style: TextStyle(color: Colors.black.withOpacity(0.4), fontSize: 15),
             ),
           ),
         ],

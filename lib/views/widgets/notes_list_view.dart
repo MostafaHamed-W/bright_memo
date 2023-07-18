@@ -19,7 +19,9 @@ class NotesListView extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: GestureDetector(
-                child: const NoteItem(),
+                child: NoteItem(
+                  note: notes[index],
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
