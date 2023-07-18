@@ -11,9 +11,6 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var noteDate = note.date;
-    DateTime date = DateTime.parse(noteDate);
-
     return Container(
       padding: const EdgeInsets.only(top: 24, bottom: 24, left: 24, right: 16),
       decoration: BoxDecoration(
@@ -47,7 +44,7 @@ class NoteItem extends StatelessWidget {
             ),
             trailing: IconButton(
               onPressed: () {
-                debugPrint('${note.color}');
+                note.delete();
               },
               icon: const Icon(
                 FontAwesomeIcons.trash,
@@ -59,7 +56,7 @@ class NoteItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 13),
             child: Text(
-              DateFormat.yMMMEd().format(date),
+              note.date,
               style: TextStyle(color: Colors.black.withOpacity(0.4), fontSize: 15),
             ),
           ),
