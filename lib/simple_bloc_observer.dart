@@ -24,7 +24,7 @@ class SimpleBlocObserver implements BlocObserver {
 
   @override
   void onEvent(Bloc bloc, Object? event) {
-    // TODO: implement onEvent
+    print('event of $bloc = $event');
   }
 
   @override

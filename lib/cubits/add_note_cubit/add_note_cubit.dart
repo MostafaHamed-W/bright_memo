@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes/constants.dart';
@@ -15,9 +15,8 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     try {
       var notesBox = Hive.box<NoteModel>(kNotesBox);
       await notesBox.add(note);
-      Future.delayed(const Duration(seconds: 4), () {
-        emit(AddNoteSuccess());
-      });
+
+      emit(AddNoteSuccess());
     } on Exception catch (e) {
       emit(AddNoteFailure(e.toString()));
     }
