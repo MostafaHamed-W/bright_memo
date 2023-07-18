@@ -26,11 +26,16 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           const SizedBox(height: 60),
           CustomAppBar(
             onPressed: () {
-              widget.note.title = title ?? widget.note.title;
-              widget.note.subTitle = content ?? widget.note.subTitle;
-              widget.note.save();
-              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-              Navigator.pop(context);
+              if (isEditing == true) {
+                widget.note.title = title ?? widget.note.title;
+                widget.note.subTitle = content ?? widget.note.subTitle;
+                widget.note.save();
+                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                Navigator.pop(context);
+              } else {
+                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                Navigator.pop(context);
+              }
             },
             title: "Edit Note",
             icon: isEditing ? Icons.check : Icons.close,
