@@ -23,11 +23,19 @@ class AddNoteBottomSheet extends StatelessWidget {
           Navigator.pop(context);
         }
       }, builder: (context, state) {
+        debugPrint('ui rebuild');
+
         return AbsorbPointer(
           absorbing: state is AddNoteLoading ? true : false,
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: AddNoteForm(),
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 20,
+              right: 20,
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: const SingleChildScrollView(
+              child: AddNoteForm(),
+            ),
           ),
         );
       }),

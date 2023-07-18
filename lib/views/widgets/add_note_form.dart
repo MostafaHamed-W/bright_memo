@@ -43,7 +43,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
               subTitle = value;
             },
           ),
-          const Spacer(),
+          // const Spacer(),
+          const SizedBox(
+            height: 32,
+          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 40),
             child: BlocBuilder<AddNoteCubit, AddNoteState>(
