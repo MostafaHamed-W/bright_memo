@@ -48,7 +48,9 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             onChanged: (value) {
               title = value;
               setState(() {
-                title!.isNotEmpty || content!.isNotEmpty ? isEditing = true : isEditing = false;
+                title?.isNotEmpty == true || content?.isNotEmpty == true
+                    ? isEditing = true
+                    : isEditing = false;
               });
             },
           ),

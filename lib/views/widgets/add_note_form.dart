@@ -138,14 +138,13 @@ class ColorsListView extends StatefulWidget {
 class _ColorsListViewState extends State<ColorsListView> {
   int currnetIndex = 0;
   List<Color> noteColors = [
-    const Color(0xFFB8B8D1),
-    const Color(0xFF5B5F97),
-    const Color(0xFFEAB464),
+    const Color(0xFFbf2c23),
+    const Color(0xFFe4c555),
+    const Color(0xFFcbd0a8),
+    const Color(0xFF00acb8),
+    const Color(0xFF0071de),
     const Color(0xFFA7754D),
     const Color(0xFFFD96A9),
-    const Color(0xFF14110F),
-    const Color(0xFF34312D),
-    const Color(0xFF7E7F83),
     const Color(0xFFD9C5B2),
   ];
   @override
@@ -162,6 +161,7 @@ class _ColorsListViewState extends State<ColorsListView> {
                 onTap: () {
                   setState(() {
                     currnetIndex = index;
+                    BlocProvider.of<AddNoteCubit>(context).noteColor = noteColors[index];
                   });
                 },
                 child: ColorItem(
