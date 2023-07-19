@@ -46,11 +46,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
           // const Spacer(),
           const SizedBox(
-            height: 32,
+            height: 16,
           ),
-          ColorsListView(),
+          const ColorsListView(),
           const SizedBox(
-            height: 32,
+            height: 16,
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 40),
@@ -71,10 +71,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       // debugPrint(formattedDate);
                       formKey.currentState!.save();
                       var noteModel = NoteModel(
-                          title: title!,
-                          subTitle: subTitle!,
-                          date: formattedDate,
-                          color: Colors.blue.value);
+                        title: title!,
+                        subTitle: subTitle!,
+                        date: formattedDate,
+                        color: Colors.blue.value,
+                      );
                       BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                       BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                     } else {
@@ -106,31 +107,68 @@ class _AddNoteFormState extends State<AddNoteForm> {
 }
 
 class ColorItem extends StatelessWidget {
-  const ColorItem({super.key});
-
+  const ColorItem({super.key, required this.isActive, required this.noteColor});
+  final bool isActive;
+  final Color noteColor;
   @override
   Widget build(BuildContext context) {
-    return const CircleAvatar(
-      backgroundColor: Colors.red,
-      radius: 20,
-    );
+    return isActive
+        ? CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 30,
+            child: CircleAvatar(
+              radius: 28,
+              backgroundColor: noteColor,
+            ),
+          )
+        : CircleAvatar(
+            backgroundColor: noteColor,
+            radius: 30,
+          );
   }
 }
 
-class ColorsListView extends StatelessWidget {
+class ColorsListView extends StatefulWidget {
   const ColorsListView({super.key});
 
   @override
+  State<ColorsListView> createState() => _ColorsListViewState();
+}
+
+class _ColorsListViewState extends State<ColorsListView> {
+  int currnetIndex = 0;
+  List<Color> noteColors = [
+    const Color(0xFFB8B8D1),
+    const Color(0xFF5B5F97),
+    const Color(0xFFEAB464),
+    const Color(0xFFA7754D),
+    const Color(0xFFFD96A9),
+    const Color(0xFF14110F),
+    const Color(0xFF34312D),
+    const Color(0xFF7E7F83),
+    const Color(0xFFD9C5B2),
+  ];
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 20 * 2,
+      height: 30 * 2,
       child: ListView.builder(
-          itemCount: 10,
+          itemCount: noteColors.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4),
-              child: ColorItem(),
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    currnetIndex = index;
+                  });
+                },
+                child: ColorItem(
+                  isActive: currnetIndex == index,
+                  noteColor: noteColors[index],
+                ),
+              ),
             );
           }),
     );
