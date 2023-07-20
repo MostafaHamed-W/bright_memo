@@ -26,7 +26,7 @@ class NoteItem extends StatelessWidget {
         debugPrint('${note.title}');
       },
       child: Container(
-        padding: const EdgeInsets.only(top: 24, bottom: 24, left: 24, right: 16),
+        padding: const EdgeInsets.only(top: 24, bottom: 10, left: 24, right: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Color(note.color),
@@ -47,7 +47,7 @@ class NoteItem extends StatelessWidget {
                 ),
               ),
               subtitle: Padding(
-                padding: const EdgeInsets.only(right: 20, bottom: 16),
+                padding: const EdgeInsets.only(right: 20, bottom: 6),
                 child: Text(
                   note.subTitle,
                   style: TextStyle(

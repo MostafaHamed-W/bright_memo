@@ -7,8 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'add_note_form.dart';
 import 'custom_text_field.dart';
 
-bool isEditing = false;
-
 class EditNoteViewBody extends StatefulWidget {
   final NoteModel note;
   const EditNoteViewBody({super.key, required this.note});
@@ -28,20 +26,16 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
         children: [
           const SizedBox(height: 60),
           CustomAppBar(
+            isEditingPage: true,
             onPressed: () {
-              if (isEditing == true) {
-                widget.note.title = title ?? widget.note.title;
-                widget.note.subTitle = content ?? widget.note.subTitle;
-                widget.note.save();
-                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-                Navigator.pop(context);
-              } else {
-                BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-                Navigator.pop(context);
-              }
+              widget.note.title = title ?? widget.note.title;
+              widget.note.subTitle = content ?? widget.note.subTitle;
+              widget.note.save();
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+              Navigator.pop(context);
             },
             title: "Edit Note",
-            icon: isEditing ? Icons.check : Icons.close,
+            icon: Icons.check,
           ),
 
           const SizedBox(height: 35),
@@ -50,11 +44,6 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             maxLines: 1,
             onChanged: (value) {
               title = value;
-              setState(() {
-                title?.isNotEmpty == true || content?.isNotEmpty == true
-                    ? isEditing = true
-                    : isEditing = false;
-              });
             },
           ),
           const SizedBox(height: 20),
@@ -63,9 +52,6 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             maxLines: 6,
             onChanged: (value) {
               content = value;
-              setState(() {
-                title!.isNotEmpty || content!.isNotEmpty ? isEditing = true : isEditing = false;
-              });
             },
           ),
           // const Spacer(),

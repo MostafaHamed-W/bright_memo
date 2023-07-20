@@ -5,7 +5,14 @@ class CustomAppBar extends StatelessWidget {
   final String title;
   final IconData icon;
   final void Function()? onPressed;
-  const CustomAppBar({super.key, required this.title, required this.icon, required this.onPressed});
+  final bool isEditingPage;
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.onPressed,
+    this.isEditingPage = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +26,15 @@ class CustomAppBar extends StatelessWidget {
           ),
         ),
         const Spacer(),
+        isEditingPage
+            ? CustomIcon(
+                icon: Icons.close,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : Container(),
+        const SizedBox(width: 7),
         CustomIcon(
           icon: icon,
           onPressed: onPressed,
