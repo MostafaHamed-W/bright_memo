@@ -137,22 +137,13 @@ class ColorsListView extends StatefulWidget {
 
 class _ColorsListViewState extends State<ColorsListView> {
   int currnetIndex = 0;
-  List<Color> noteColors = [
-    const Color(0xFFbf2c23),
-    const Color(0xFFe4c555),
-    const Color(0xFFcbd0a8),
-    const Color(0xFF00acb8),
-    const Color(0xFF0071de),
-    const Color(0xFFA7754D),
-    const Color(0xFFFD96A9),
-    const Color(0xFFD9C5B2),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 30 * 2,
       child: ListView.builder(
-          itemCount: noteColors.length,
+          itemCount: KnoteColors.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Padding(
@@ -161,12 +152,12 @@ class _ColorsListViewState extends State<ColorsListView> {
                 onTap: () {
                   setState(() {
                     currnetIndex = index;
-                    BlocProvider.of<AddNoteCubit>(context).noteColor = noteColors[index];
+                    BlocProvider.of<AddNoteCubit>(context).noteColor = KnoteColors[index];
                   });
                 },
                 child: ColorItem(
                   isActive: currnetIndex == index,
-                  noteColor: noteColors[index],
+                  noteColor: KnoteColors[index],
                 ),
               ),
             );

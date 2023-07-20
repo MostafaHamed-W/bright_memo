@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:notes/constants.dart';
 import 'package:notes/cubits/notes_cubit/notes_cubit.dart';
 import 'package:notes/models/note_model.dart';
 import 'package:notes/views/widgets/custom_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'add_note_form.dart';
 import 'custom_text_field.dart';
+
+bool isEditing = false;
 
 class EditNoteViewBody extends StatefulWidget {
   final NoteModel note;
@@ -15,7 +19,6 @@ class EditNoteViewBody extends StatefulWidget {
 
 class _EditNoteViewBodyState extends State<EditNoteViewBody> {
   String? title, content;
-  bool isEditing = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +70,58 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
           ),
           // const Spacer(),
           const SizedBox(
-            height: 32,
+            height: 16,
           ),
+          EditNoteColorsList(
+            note: widget.note,
+          )
         ],
+      ),
+    );
+  }
+}
+
+class EditNoteColorsList extends StatefulWidget {
+  const EditNoteColorsList({super.key, required this.note});
+  final NoteModel note;
+
+  @override
+  State<EditNoteColorsList> createState() => _EditNoteColorsListState();
+}
+
+class _EditNoteColorsListState extends State<EditNoteColorsList> {
+  late int currnetIndex;
+
+  @override
+  void initState() {
+    currnetIndex = KnoteColors.indexOf(Color(widget.note.color));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30 * 2,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: KnoteColors.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  currnetIndex = index;
+                  widget.note.color = KnoteColors[index].value;
+                });
+              },
+              child: ColorItem(
+                isActive: currnetIndex == index,
+                noteColor: KnoteColors[index],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
