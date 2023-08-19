@@ -1,6 +1,7 @@
+import 'package:bright_memo/views/widgets/edit_note_view_body.dart';
 import 'package:flutter/material.dart';
-import 'package:notes/models/note_model.dart';
-import 'package:notes/views/widgets/edit_note_view_body.dart';
+
+import '../models/note_model.dart';
 
 class EditNoteView extends StatelessWidget {
   final NoteModel note;

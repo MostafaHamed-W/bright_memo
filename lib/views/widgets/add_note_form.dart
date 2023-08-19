@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:notes/cubits/add_note_cubit/add_note_cubit.dart';
-import 'package:notes/cubits/notes_cubit/notes_cubit.dart';
-import 'package:notes/models/note_model.dart';
 import 'package:intl/intl.dart';
 import '../../constants.dart';
+import '../../cubits/add_note_cubit/add_note_cubit.dart';
+import '../../cubits/notes_cubit/notes_cubit.dart';
+import '../../models/note_model.dart';
 import 'custom_text_field.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddNoteForm extends StatefulWidget {
@@ -143,7 +142,7 @@ class _ColorsListViewState extends State<ColorsListView> {
     return SizedBox(
       height: 30 * 2,
       child: ListView.builder(
-          itemCount: KnoteColors.length,
+          itemCount: kNoteColors.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return Padding(
@@ -152,12 +151,12 @@ class _ColorsListViewState extends State<ColorsListView> {
                 onTap: () {
                   setState(() {
                     currnetIndex = index;
-                    BlocProvider.of<AddNoteCubit>(context).noteColor = KnoteColors[index];
+                    BlocProvider.of<AddNoteCubit>(context).noteColor = kNoteColors[index];
                   });
                 },
                 child: ColorItem(
                   isActive: currnetIndex == index,
-                  noteColor: KnoteColors[index],
+                  noteColor: kNoteColors[index],
                 ),
               ),
             );

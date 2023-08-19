@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:notes/constants.dart';
-import 'package:notes/cubits/notes_cubit/notes_cubit.dart';
-import 'package:notes/models/note_model.dart';
-import 'package:notes/views/widgets/custom_app_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../constants.dart';
+import '../../cubits/notes_cubit/notes_cubit.dart';
+import '../../models/note_model.dart';
 import 'add_note_form.dart';
+import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
 
 class EditNoteViewBody extends StatefulWidget {
@@ -80,7 +80,7 @@ class _EditNoteColorsListState extends State<EditNoteColorsList> {
 
   @override
   void initState() {
-    currnetIndex = KnoteColors.indexOf(Color(widget.note.color));
+    currnetIndex = kNoteColors.indexOf(Color(widget.note.color));
     super.initState();
   }
 
@@ -90,7 +90,7 @@ class _EditNoteColorsListState extends State<EditNoteColorsList> {
       height: 30 * 2,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: KnoteColors.length,
+        itemCount: kNoteColors.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -98,12 +98,12 @@ class _EditNoteColorsListState extends State<EditNoteColorsList> {
               onTap: () {
                 setState(() {
                   currnetIndex = index;
-                  widget.note.color = KnoteColors[index].value;
+                  widget.note.color = kNoteColors[index].value;
                 });
               },
               child: ColorItem(
                 isActive: currnetIndex == index,
-                noteColor: KnoteColors[index],
+                noteColor: kNoteColors[index],
               ),
             ),
           );

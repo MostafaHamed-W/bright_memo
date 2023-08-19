@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:notes/cubits/notes_cubit/notes_cubit.dart';
-import 'package:notes/main.dart';
-import 'package:notes/models/note_model.dart';
-import '../../constants.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cubits/notes_cubit/notes_cubit.dart';
+import '../../models/note_model.dart';
 import '../edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
@@ -23,7 +20,7 @@ class NoteItem extends StatelessWidget {
             builder: (context) => EditNoteView(note: note),
           ),
         );
-        debugPrint('${note.title}');
+        debugPrint(note.title);
       },
       child: Container(
         padding: const EdgeInsets.only(top: 24, bottom: 10, left: 24, right: 16),

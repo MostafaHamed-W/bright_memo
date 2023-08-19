@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.notes">
+    package="com.example.bright_memo">
    <application
-        android:label="notes"
+        android:label="bright_memo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

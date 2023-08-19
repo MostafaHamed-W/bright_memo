@@ -1,10 +1,8 @@
-import 'dart:ui';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:notes/constants.dart';
 
+import '../../constants.dart';
 import '../../models/note_model.dart';
 
 part 'add_note_state.dart';

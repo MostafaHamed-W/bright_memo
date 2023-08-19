@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SimpleBlocObserver implements BlocObserver {
   @override
@@ -18,17 +18,13 @@ class SimpleBlocObserver implements BlocObserver {
   }
 
   @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    // TODO: implement onError
-  }
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {}
 
   @override
   void onEvent(Bloc bloc, Object? event) {
-    print('event of $bloc = $event');
+    debugPrint('event of $bloc = $event');
   }
 
   @override
-  void onTransition(Bloc bloc, Transition transition) {
-    // TODO: implement onTransition
-  }
+  void onTransition(Bloc bloc, Transition transition) {}
 }

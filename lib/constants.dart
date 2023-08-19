@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const kItemColor = Color(0xFFffcb77);
 const kPrimaryColor = Color(0xFF2fead7);
 const kNotesBox = "notes";
-List<Color> KnoteColors = [
+List<Color> kNoteColors = [
   const Color(0xFFbf2c23),
   const Color(0xFFe4c555),
   const Color(0xFFcbd0a8),
